@@ -7,37 +7,40 @@ function App() {
 
   const handleClick = (value: string) => {
     if (value === "C") {
-      setInput(""); // Borra la expresión
+      setInput("");
     } else if (value === "=") {
       try {
-        setInput(Function(`"use strict"; return (${input})`)().toString()); // Evalúa seguro
+        setInput(Function(`"use strict"; return (${input})`)().toString());
       } catch {
         setInput("Error");
       }
     } else {
-      setInput((prev) => prev + value); // Construye la operación
+      setInput((prev) => prev + value);
     }
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-neutral-900 text-white">
-      {/* Pantalla de la calculadora */}
-      <div className="w-72 bg-neutral-800 text-right text-4xl font-mono p-6 rounded-lg shadow-lg">
-        {input || "0"}
-      </div>
+    <main className="flex flex-col items-center justify-center min-h-screen bg-neutral-900 h-screen text-white">
+      <div className="bg-neutral-800 px-7 py-4 rounded-lg shadow-lg">
+        <div className="w-72 bg-neutral-900/40 text-right font-mono p-6 rounded-lg shadow-lg overflow-hidden">
+          <div className="text-3xl" style={{ fontSize: `${input.length > 12 ? "1.5rem" : "3rem"}` }}>
+            {input || "0"}
+          </div>
+        </div>
 
-      {/* Botones */}
-      <section className="grid grid-cols-4 gap-2 w-72 mt-5">
-        {BUTTONS.map(({ value, important, wide }) => (
-          <Button
-            key={value}
-            value={value}
-            important={important}
-            wide={wide}
-            onClick={() => handleClick(value)}
-          />
-        ))}
-      </section>
+        {/* Botones */}
+        <section className="grid grid-cols-4 gap-2 w-72 mt-5">
+          {BUTTONS.map(({ value, important, wide }) => (
+            <Button
+              key={value}
+              value={value}
+              important={important}
+              wide={wide}
+              onClick={() => handleClick(value)}
+            />
+          ))}
+        </section>
+      </div>
     </main>
   );
 }
