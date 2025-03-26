@@ -10,7 +10,8 @@ function App() {
       setInput("");
     } else if (value === "=") {
       try {
-        setInput(Function(`"use strict"; return (${input})`)().toString());
+        const expression = input.replace(/(\d+)%(\d+)/g, "($1/100)*$2");
+        setInput(Function(`"use strict"; return (${expression})`)().toString());
       } catch {
         setInput("Error");
       }
