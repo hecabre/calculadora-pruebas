@@ -14,6 +14,7 @@ export const BUTTONS = [
   { value: "8", important: false, icon: "8", wide: false },
   { value: "9", important: false, icon: "9", wide: false },
   { value: "/", important: true, icon: "/", wide: false },
+  { value: "%", important: true, icon: ".", wide: false },
   { value: "=", important: true, icon: "=", wide: true },
   { value: ".", important: true, icon: ".", wide: false },
 ];
